@@ -1,7 +1,7 @@
-package engsoftware.trabalhoeventos;
+package engsoftware.trabalhoeventos.controller;
 
-import engsoftware.trabalhoeventos.Evento;
-import engsoftware.trabalhoeventos.EventoRepository;
+import engsoftware.trabalhoeventos.repository.EventoRepository;
+import engsoftware.trabalhoeventos.model.Evento;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package engsoftware.trabalhoeventos;
+package engsoftware.trabalhoeventos.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
