@@ -14,6 +14,7 @@ public class OrganizadorController {
 
     private final OrganizadorService organizadorService;
 
+    @Autowired
     public OrganizadorController(OrganizadorService organizadorService) {
         this.organizadorService = organizadorService;
     }
