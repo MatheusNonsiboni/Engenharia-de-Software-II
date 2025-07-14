@@ -1,35 +1,28 @@
 package engsoftware.trabalhoeventos.model;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
-@Table(name = "organizador")
-public class Organizador {
+public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O nome do organizador é obrigatório")
-    private String nome;
+    @NotBlank(message = "O nome do usuário é obrigatório")
+    private String nome_completo;
 
-    @NotBlank(message = "O email do organizador é obrigatório")
+    @NotBlank(message = "O email do usuário é obrigatório")
     private String email;
 
     @NotBlank(message = "A senha é obrigatória")
     private String senha;
 
-    @NotBlank(message = "O telefone do organizador é obrigatório")
+    @NotBlank(message = "O telefone do usuário é obrigatório")
     private String telefone;
-
-    @NotBlank(message = "O CPF ou CNPJ do organizador é obrigatório")
-    private String documento;
-
-
-    public Organizador() {
-
-    }
 
     public Long getId() {
         return id;
@@ -37,11 +30,11 @@ public class Organizador {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNome() {
-        return nome;
+    public String getNome_completo() {
+        return nome_completo;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome_completo(String nome_completo) {
+        this.nome_completo = nome_completo;
     }
     public String getEmail() {
         return email;
@@ -60,11 +53,5 @@ public class Organizador {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-    public String getDocumento() {
-        return documento;
-    }
-    public void setDocumento(String documento) {
-        this.documento = documento;
     }
 }
