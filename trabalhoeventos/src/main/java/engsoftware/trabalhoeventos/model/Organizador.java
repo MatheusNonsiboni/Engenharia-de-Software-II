@@ -1,8 +1,9 @@
 package engsoftware.trabalhoeventos.model;
 
-
+import engsoftware.trabalhoeventos.DTO.OrganizadorDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.beans.BeanUtils;
 
 @Entity
 @Table(name = "organizador")
@@ -23,9 +24,15 @@ public class Organizador {
     @NotBlank(message = "O telefone do organizador é obrigatório")
     private String telefone;
 
-    @NotBlank(message = "O CPF ou CNPJ do organizador é obrigatório")
+    @NotBlank(message = "O username do organizador é obrigatório")
+    private String username;
+
+    @NotBlank(message = "O CPF PU CNPJ do organizador é obrigatório")
     private String documento;
 
+    public Organizador(OrganizadorDTO organizador) {
+        BeanUtils.copyProperties(organizador, this);
+    }
 
     public Organizador() {
 
@@ -60,6 +67,12 @@ public class Organizador {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getDocumento() {
         return documento;
