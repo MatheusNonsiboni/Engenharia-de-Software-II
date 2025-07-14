@@ -33,4 +33,18 @@ public class OrganizadorController {
     public void delete(@PathVariable Long id){
         organizadorService.delete(id);
     }
+
+    @PostMapping("/login")
+    public Organizador login(@RequestBody Organizador organizador) {
+        String email = organizador.getEmail();
+        String senha = organizador.getSenha();
+
+        Organizador encontrado = organizadorService.autenticar(email, senha);
+        if (encontrado != null) {
+            return encontrado;
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -1,0 +1,58 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff;
+}
+
+/* Retângulo laranja à esquerda */
+.login-sidebar {
+    background-color: #FF8C00;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Área branca à direita */
+.login-content {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Título */
+.login-title {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #FF8C00;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #C65300;
+    box-shadow: none;
+}
+
+
+/* Mensagem de login */
+.alert-info {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+

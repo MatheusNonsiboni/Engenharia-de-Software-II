@@ -28,4 +28,8 @@ public class OrganizadorService {
         organizadorRepository.deleteById(id);
     }
 
+    public Organizador autenticar(String email, String senha) {
+        return organizadorRepository.findByEmailAndSenha(email, senha);
+    }
+
 }
