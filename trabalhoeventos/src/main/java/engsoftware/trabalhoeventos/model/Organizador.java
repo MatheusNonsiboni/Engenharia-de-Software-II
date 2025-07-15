@@ -3,6 +3,7 @@ package engsoftware.trabalhoeventos.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
+import engsoftware.trabalhoeventos.DTO.OrganizadorDTO;
 
 @Entity
 @Table(name = "organizador")
@@ -15,10 +16,10 @@ public class Organizador extends Usuario {
         super();
     }
 
-    public Organizador(OrganizadorDTO dto) {
-        super(dto);
-        this.documento = dto.getDocumento();
-    }
+//    public Organizador(OrganizadorDTO dto) {
+//        super(dto);
+//        this.documento = dto.getDocumento();
+//    }
 
 
     public String getDocumento() {
