@@ -3,6 +3,7 @@ package engsoftware.trabalhoeventos.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Evento {
@@ -12,22 +13,23 @@ public class Evento {
     private Long id;
     @NotBlank(message = "O nome do evento é obrigatório")
     private String nome;
-    @NotNull(message = "A data e o horário são obrigatórios")
-    private LocalDateTime dataHorario;
+    @Column(name = "data_horario")
+@NotNull(message = "Data e horário são obrigatórios")
+@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+private LocalDateTime dataHorario;
+
+@Column(name = "nivel_preco")
+@Min(value = 1, message = "O nível de preço deve ser no mínimo 1")
+@Max(value = 5, message = "O nível de preço deve ser no máximo 5")
+private Integer nivelPreco;
     @NotBlank(message = "O local do evento é obrigatório")
     private String local;
-    @Min(value = 1, message = "O nível de preço deve ser no mínimo 1")
-    @Max(value = 5, message = "O nível de preço deve ser no máximo 5")
-    private int nivelPreco;
+
     private boolean publicidade;
     private String linkRedirecionamento;
     @NotBlank(message = "Os detalhes do evento são obrigatórios")
     @Lob
     private String detalhes;
-
-    @ManyToOne
-    @JoinColumn(name = "organizador_id")
-    private Organizador organizador;
 
     public Long getId() {
         return id;
@@ -91,15 +93,5 @@ public class Evento {
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
-    }
-
-    //organizador ainda não está implementado
-    public Organizador getOrganizador() {
-        return organizador;
-    }
-
-    //organizador ainda não está implementado
-    public void setOrganizador(Organizador organizador) {
-        this.organizador = organizador;
     }
 }

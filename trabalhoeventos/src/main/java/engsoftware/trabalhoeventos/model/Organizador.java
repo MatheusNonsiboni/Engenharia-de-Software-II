@@ -1,6 +1,5 @@
 package engsoftware.trabalhoeventos.model;
 
-import engsoftware.trabalhoeventos.DTO.OrganizadorDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.BeanUtils;
@@ -29,10 +28,6 @@ public class Organizador {
 
     @NotBlank(message = "O CPF PU CNPJ do organizador é obrigatório")
     private String documento;
-
-    public Organizador(OrganizadorDTO organizador) {
-        BeanUtils.copyProperties(organizador, this);
-    }
 
     public Organizador() {
 

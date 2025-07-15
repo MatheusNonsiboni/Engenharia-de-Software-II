@@ -1,60 +1,53 @@
 package engsoftware.trabalhoeventos.controller;
 
-import engsoftware.trabalhoeventos.repository.EventoRepository;
 import engsoftware.trabalhoeventos.model.Evento;
+import engsoftware.trabalhoeventos.service.EventoService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Controller
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 @RequestMapping("/eventos")
 public class EventoController {
 
-    @Autowired
-    private EventoRepository eventoRepository;
+    private final EventoService eventoService;
 
-    //lista eventos
+    public EventoController(EventoService eventoService) {
+        this.eventoService = eventoService;
+    }
+
+    // Lista todos os eventos (GET /eventos)
     @GetMapping
-    public String listarEventos(Model model) {
-        List<Evento> eventos = eventoRepository.findAll();
-        model.addAttribute("eventos", eventos);
-        return "eventos"; // eventos.html
+    public ResponseEntity<List<Evento>> listarEventos() {
+        List<Evento> eventos = eventoService.getAll();
+        return ResponseEntity.ok(eventos);
     }
 
-    //busca eventos
+    // Busca eventos por nome (GET /eventos/buscar?nome=...)
     @GetMapping("/buscar")
-    public String buscarEventos(@RequestParam("nome") String nome, Model model) {
-        List<Evento> eventos = eventoRepository.findByNomeContainingIgnoreCase(nome);
-        model.addAttribute("eventos", eventos);
-        model.addAttribute("busca", nome);
-        return "eventos";
+    public ResponseEntity<List<Evento>> buscarEventos(@RequestParam String nome) {
+        List<Evento> eventos = eventoService.buscarPorNome(nome);
+        return ResponseEntity.ok(eventos);
     }
 
-    //cadastrar evento
-    @GetMapping("/cadastrar-evento")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("evento", new Evento());
-        return "cadastro-evento";
-    }
-
-    //salvar evento
+    // Cadastra novo evento (POST /eventos)
     @PostMapping
-    public String salvarEvento(@Valid @ModelAttribute Evento evento, BindingResult result) {
-        if (result.hasErrors()) {
-            return "cadastro-evento";
+    public ResponseEntity<Evento> salvarEvento(@Valid @RequestBody Evento evento) {
+        // Validação manual para campos adicionais (opcional)
+        if (evento.getNome() == null || evento.getNome().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
         }
-        eventoRepository.save(evento);
-        return "redirect:/eventos";
+        
+        Evento eventoSalvo = eventoService.save(evento);
+        return ResponseEntity.ok(eventoSalvo);
     }
 
-    //excluir evento
-    @GetMapping("/excluir/{id}")
-    public String excluirEvento(@PathVariable Long id) {
-        eventoRepository.deleteById(id);
-        return "redirect:/eventos";
+    // Exclui evento (DELETE /eventos/{id})
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluirEvento(@PathVariable Long id) {
+        eventoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

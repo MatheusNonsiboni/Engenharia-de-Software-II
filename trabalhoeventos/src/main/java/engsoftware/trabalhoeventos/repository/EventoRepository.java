@@ -10,4 +10,3 @@ import java.util.List;
 public interface EventoRepository extends JpaRepository<Evento, Long> {
     List<Evento> findByNomeContainingIgnoreCase(String nome);
 }
-
