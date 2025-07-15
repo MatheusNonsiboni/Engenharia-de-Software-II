@@ -5,7 +5,11 @@ import "./PaginaEventos.css";
 
 export default function PaginaEventos() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [eventos, setEventos] = useState([]);  // Estado para eventos
+    const [eventos, setEventos] = useState([]);
+    const [filtro, setFiltro] = useState("");
+    const eventosFiltrados = eventos.filter((evento) =>
+        evento.nome.toLowerCase().includes(filtro.toLowerCase())
+    );
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -67,26 +71,70 @@ export default function PaginaEventos() {
                     </li>
                 </ul>
             </div>
+            
+            <div className="container mt-4">
+                {/* Campo de busca */}
+                <input
+                    type="text"
+                    className="form-control mb-4"
+                    placeholder="Buscar evento pelo nome..."
+                    value={filtro}
+                    onChange={(e) => setFiltro(e.target.value)}
+                />
 
-            {/* Conteúdo principal */}
-            <div className={`conteudo-principal ${sidebarOpen ? "conteudo-reduzido" : ""}`}>
-                <div className="container mt-4">
-                    {eventos.length === 0 && <p>Nenhum evento encontrado.</p>}
+                {/* Resultados da busca */}
+                {filtro && (
+                    <>
+                        <h5>Resultados da busca:</h5>
+                        {eventosFiltrados.length === 0 ? (
+                            <p>Nenhum evento encontrado com esse nome.</p>
+                        ) : (
+                            eventosFiltrados.map((evento) => (
+                                <div key={`filtro-${evento.id}`} className="card mb-3 p-3 border-success">
+                                    <h5>{evento.nome}</h5>
+                                    <p><strong>Horário:</strong> {new Date(evento.dataHorario).toLocaleString()}</p>
+                                    <p><strong>Local:</strong> {evento.local}</p>
+                                    <p><strong>Preço:</strong> {"$".repeat(evento.nivelPreco)}</p>
+                                    <p><strong>Informações:</strong> {evento.detalhes}</p>
+                                    {evento.link_redirecionamento && (
+                                        <a
+                                            href={evento.link_redirecionamento}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="btn btn-outline-success"
+                                        >
+                                            Ver detalhes
+                                        </a>
+                                    )}
+                                </div>
+                            ))
+                        )}
+                        <hr />
+                    </>
+                )}
 
-                    {eventos.map((evento) => (
-                        <div key={evento.id} className="card mb-3 p-3">
-                            <h5>{evento.nome}</h5>
-                            <p><strong>Horário:</strong> {new Date(evento.data_horario).toLocaleString()}</p>
-                            <p><strong>Local:</strong> {evento.local}</p>
-                            <p><strong>Preço:</strong> { "$".repeat(evento.nivel_preco) }</p>
-                            {evento.link_redirecionamento && (
-                                <a href={evento.link_redirecionamento} target="_blank" rel="noreferrer" className="btn btn-outline-warning">
-                                    Ver detalhes
-                                </a>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                {/* Lista completa de eventos */}
+                <h5>Todos os eventos:</h5>
+                {eventos.length === 0 && <p>Nenhum evento encontrado.</p>}
+                {eventos.map((evento) => (
+                    <div key={evento.id} className="card mb-3 p-3">
+                        <h5>{evento.nome}</h5>
+                        <p><strong>Horário:</strong> {new Date(evento.dataHorario).toLocaleString()}</p>
+                        <p><strong>Local:</strong> {evento.local}</p>
+                        <p><strong>Preço:</strong> {"$".repeat(evento.nivelPreco)}</p>
+                        <p><strong>Informações:</strong> {evento.detalhes}</p>
+                        {evento.link_redirecionamento && (
+                            <a
+                                href={evento.link_redirecionamento}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="btn btn-outline-warning"
+                            >
+                                Ver detalhes
+                            </a>
+                        )}
+                    </div>
+                ))}
             </div>
         </>
     );

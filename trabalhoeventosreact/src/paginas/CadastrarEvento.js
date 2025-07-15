@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CadastrarEvento() {
   const [exibirLink, setExibirLink] = useState(false);
@@ -32,22 +33,21 @@ export default function CadastrarEvento() {
  const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    // Verifica se a data foi preenchida
     if (!evento.dataHorario) {
       throw new Error("Preencha a data e horário");
     }
 
     const dadosParaEnviar = {
       nome: evento.nome,
-      dataHorario: evento.dataHorario + ":00", // Formato ISO
+      dataHorario: evento.dataHorario + ":00",
       local: evento.local,
-      nivelPreco: Number(evento.nivelPreco) || 1, // Nome igual ao do BD
+      nivelPreco: Number(evento.nivelPreco) || 1,
       publicidade: evento.publicidade,
       linkRedirecionamento: evento.linkRedirecionamento || null,
       detalhes: evento.detalhes,
     };
 
-    console.log("Dados corrigidos:", dadosParaEnviar); // DEBUG
+    console.log("Dados corrigidos:", dadosParaEnviar);
     await axios.post("http://localhost:8080/eventos", dadosParaEnviar);
     alert("Evento cadastrado!");
   } catch (error) {
@@ -55,14 +55,21 @@ export default function CadastrarEvento() {
   }
 };
 
+  const navigate = useNavigate();
+  const irParaExcluirEvento = () => {
+  navigate("/excluir-evento");
+};
+
+
   return (
     <div className="page-container">
       <header className="header">
         <span className="titulo">PÁGINA DO ORGANIZADOR</span>
         <div className="button-group">
-          <button className="botao">Cadastrar novo evento</button>
-          <button className="botao">Alterar evento</button>
-          <button className="botao">Excluir evento</button>
+          <button className="botao" onClick={irParaExcluirEvento}>
+          Excluir evento
+</button>
+
         </div>
       </header>
 
