@@ -49,4 +49,11 @@ public class EventoController {
         eventoService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Evento> buscarPorId(@PathVariable Long id) {
+        return eventoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

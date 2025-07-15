@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "./PaginaEventos.css";
 
 export default function PaginaEventos() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [eventos, setEventos] = useState([]);  // Estado para eventos
+    const [eventos, setEventos] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,16 +74,25 @@ export default function PaginaEventos() {
                     {eventos.length === 0 && <p>Nenhum evento encontrado.</p>}
 
                     {eventos.map((evento) => (
-                        <div key={evento.id} className="card mb-3 p-3">
+                        <div key={evento.id} className="card mb-4 p-3 shadow-sm">
+                            <img
+                                src="/imagens/evento.jpg"
+                                alt="Imagem do evento"
+                                className="img-fluid mb-3 rounded"
+                                style={{width: "300px", height: "auto"}}
+                            />
+
                             <h5>{evento.nome}</h5>
-                            <p><strong>Horário:</strong> {new Date(evento.data_horario).toLocaleString()}</p>
+                            <p><strong>Horário:</strong> {new Date(evento.dataHorario).toLocaleString()}</p>
                             <p><strong>Local:</strong> {evento.local}</p>
-                            <p><strong>Preço:</strong> { "$".repeat(evento.nivel_preco) }</p>
-                            {evento.link_redirecionamento && (
-                                <a href={evento.link_redirecionamento} target="_blank" rel="noreferrer" className="btn btn-outline-warning">
-                                    Ver detalhes
-                                </a>
-                            )}
+                            <p><strong>Preço:</strong> {"$".repeat(evento.nivelPreco)}</p>
+
+                            <Link
+                                to={`/eventos/${evento.id}`}
+                                className="btn btn-outline-warning"
+                            >
+                                Ver detalhes
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -91,3 +100,4 @@ export default function PaginaEventos() {
         </>
     );
 }
+

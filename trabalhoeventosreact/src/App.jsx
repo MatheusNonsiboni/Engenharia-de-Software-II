@@ -5,6 +5,7 @@ import LoginOrganizador from "./paginas/LoginOrganizador";
 import CadastrarEvento from "./paginas/CadastrarEvento";
 import CadastroOrganizador from "./paginas/CadastroOrganizador";
 import CadastroUsuario from "./paginas/CadastroUsuario";
+import VerDetalhes from "./paginas/VerDetalhes";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/cadastrar-evento" element={<CadastrarEvento />} />
                 <Route path="/cadastro-organizador" element={<CadastroOrganizador />} />
                 <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
+                <Route path="/eventos/:id" element={<VerDetalhes />} />
             </Routes>
         </BrowserRouter>
     );
