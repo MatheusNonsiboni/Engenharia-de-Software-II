@@ -36,4 +36,8 @@ public class EventoService {
     public List<Evento> buscarPorNome(String nome) {
         return eventoRepository.findByNomeContainingIgnoreCase(nome);
     }
+
+    public Optional<Evento> buscarPorId(Long id) {
+        return eventoRepository.findById(id);
+    }
 }

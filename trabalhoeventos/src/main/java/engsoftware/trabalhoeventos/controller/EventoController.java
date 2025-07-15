@@ -41,6 +41,13 @@ public class EventoController {
     @DeleteMapping("/excluir/{id}")
         public ResponseEntity<Void> excluirEvento(@PathVariable Long id) {
         eventoService.delete(id);
-    return ResponseEntity.noContent().build();
-}
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Evento> buscarPorId(@PathVariable Long id) {
+        return eventoService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
