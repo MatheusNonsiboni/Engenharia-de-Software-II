@@ -6,6 +6,7 @@ import CadastrarEvento from "./paginas/CadastrarEvento";
 import CadastroOrganizador from "./paginas/CadastroOrganizador";
 import CadastroUsuario from "./paginas/CadastroUsuario";
 import VerDetalhes from "./paginas/VerDetalhes";
+import ExcluirEvento from "./paginas/ExcluirEvento";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/cadastro-organizador" element={<CadastroOrganizador />} />
                 <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
                 <Route path="/eventos/:id" element={<VerDetalhes />} />
+                <Route path="/excluir-evento" element={<ExcluirEvento />} />
             </Routes>
         </BrowserRouter>
     );
