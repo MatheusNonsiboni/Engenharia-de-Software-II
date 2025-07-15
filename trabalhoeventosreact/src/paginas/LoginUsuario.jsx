@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import "./LoginOrganizador.css";
+import "./LoginUsuario.css";
+import {Link, useNavigate} from "react-router-dom";
 
-export default function LoginOrganizador() {
+export default function LoginUsuario() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [mensagem, setMensagem] = useState("");
+
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
 
         const dadosLogin = { email, senha };
 
-        fetch("http://localhost:8080/organizadores/login", {
+        fetch("http://localhost:8080/usuarios/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dadosLogin),
@@ -23,6 +26,7 @@ export default function LoginOrganizador() {
             .then((data) => {
                 if (data) {
                     setMensagem("Login realizado com sucesso!");
+                    navigate("/eventos");
                 } else {
                     setMensagem("Email ou senha inválidos.");
                 }
@@ -32,14 +36,14 @@ export default function LoginOrganizador() {
 
     return (
         <div className="login-container">
-            {/* Retângulo laranja  */}
-            <div className="login-sidebar">
-            </div>
+            <div className="login-sidebar"></div>
 
             <div className="login-content">
                 <div style={{ width: "100%", maxWidth: "420px" }}>
-                    <h2 className="login-title">PÁGINA DO ORGANIZADOR</h2>
+                    <h2 className="login-title">Login</h2>
+
                     {mensagem && <div className="alert alert-info">{mensagem}</div>}
+
                     <form onSubmit={handleLogin}>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">E-mail</label>
@@ -67,9 +71,16 @@ export default function LoginOrganizador() {
 
                         <button type="submit" className="btn btn-outline-warning w-100">AVANÇAR</button>
                     </form>
+
+                    <div className="login-footer mt-4 text-center">
+                        <p>Não tem uma conta?</p>
+                        <Link to="/cadastro-organizador">Cadastrar-se como organizador</Link><br />
+                        <Link to="/cadastro-usuario">Cadastrar-se como usuário</Link>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
 

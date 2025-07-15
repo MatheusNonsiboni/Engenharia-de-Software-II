@@ -1,6 +1,7 @@
 package engsoftware.trabalhoeventos.controller;
 
 import engsoftware.trabalhoeventos.model.Evento;
+import engsoftware.trabalhoeventos.model.Organizador;
 import engsoftware.trabalhoeventos.service.EventoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,9 @@ public class EventoController {
 
     // Lista todos os eventos (GET /eventos)
     @GetMapping
-    public ResponseEntity<List<Evento>> listarEventos() {
-        List<Evento> eventos = eventoService.getAll();
-        return ResponseEntity.ok(eventos);
+    public List<Evento> getAll(){
+        return eventoService.getAll();
     }
-
     // Busca eventos por nome (GET /eventos/buscar?nome=...)
     @GetMapping("/buscar")
     public ResponseEntity<List<Evento>> buscarEventos(@RequestParam String nome) {
@@ -39,7 +38,7 @@ public class EventoController {
         if (evento.getNome() == null || evento.getNome().trim().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-        
+
         Evento eventoSalvo = eventoService.save(evento);
         return ResponseEntity.ok(eventoSalvo);
     }

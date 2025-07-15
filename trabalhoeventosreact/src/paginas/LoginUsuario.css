@@ -5,7 +5,6 @@
     background-color: #ffffff;
 }
 
-/* Retângulo laranja à esquerda */
 .login-sidebar {
     background-color: #FF8C00;
     width: 40%;
@@ -15,7 +14,6 @@
     justify-content: center;
 }
 
-/*Área branca à direita */
 .login-content {
     width: 60%;
     display: flex;
@@ -23,7 +21,6 @@
     align-items: center;
 }
 
-/* Título */
 .login-title {
     font-weight: 700;
     font-size: 1.8rem;
@@ -32,7 +29,6 @@
     color: #FF8C00;
 }
 
-/* Inputs */
 .form-control {
     border-radius: 12px;
     padding: 14px 16px;
@@ -47,12 +43,21 @@
 }
 
 
-/* Mensagem de login */
 .alert-info {
     font-size: 0.95rem;
     text-align: center;
     margin-bottom: 15px;
 }
 
+.login-footer a {
+    color: #555;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+    color: #333;
+}
 
 

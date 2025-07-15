@@ -1,5 +1,6 @@
 package engsoftware.trabalhoeventos.service;
 
+import engsoftware.trabalhoeventos.model.Organizador;
 import engsoftware.trabalhoeventos.model.Usuario;
 import engsoftware.trabalhoeventos.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,9 @@ public class UsuarioService {
     public void deletarPorId(Integer id) {
         usuarioRepository.deleteById(id);
     }
+
+    public Usuario autenticar(String email, String senha) {
+        return usuarioRepository.findByEmailAndSenha(email, senha);
+    }
+
 }

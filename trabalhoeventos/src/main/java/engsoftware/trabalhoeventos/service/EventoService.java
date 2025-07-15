@@ -1,6 +1,7 @@
 package engsoftware.trabalhoeventos.service;
 
 import engsoftware.trabalhoeventos.model.Evento;
+import engsoftware.trabalhoeventos.model.Organizador;
 import engsoftware.trabalhoeventos.repository.EventoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
