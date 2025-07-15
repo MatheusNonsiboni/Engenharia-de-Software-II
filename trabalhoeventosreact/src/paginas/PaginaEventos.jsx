@@ -37,7 +37,6 @@ export default function PaginaEventos() {
                 >
                     <FaBars size={24} />
                 </button>
-                <h4 className="text-white m-0">Buscar evento</h4>
             </div>
 
             {/* Sidebar */}
@@ -114,25 +113,25 @@ export default function PaginaEventos() {
                 )}
 
                 {/* Lista completa de eventos */}
-                <h5>Todos os eventos:</h5>
                 {eventos.length === 0 && <p>Nenhum evento encontrado.</p>}
                 {eventos.map((evento) => (
-                    <div key={evento.id} className="card mb-3 p-3">
+                    <div key={evento.id} className="card mb-4 p-3 shadow-sm">
+                        <img
+                            src="/imagens/evento.jpg"
+                            alt="Imagem do evento"
+                            className="img-fluid mb-3 rounded"
+                            style={{width: "300px", height: "auto"}}
+                        />
                         <h5>{evento.nome}</h5>
                         <p><strong>Horário:</strong> {new Date(evento.dataHorario).toLocaleString()}</p>
                         <p><strong>Local:</strong> {evento.local}</p>
                         <p><strong>Preço:</strong> {"$".repeat(evento.nivelPreco)}</p>
-                        <p><strong>Informações:</strong> {evento.detalhes}</p>
-                        {evento.link_redirecionamento && (
-                            <a
-                                href={evento.link_redirecionamento}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="btn btn-outline-warning"
-                            >
-                                Ver detalhes
-                            </a>
-                        )}
+                        <Link
+                            to={`/eventos/${evento.id}`}
+                            className="btn btn-outline-warning"
+                        >
+                            Ver detalhes
+                        </Link>
                     </div>
                 ))}
             </div>
