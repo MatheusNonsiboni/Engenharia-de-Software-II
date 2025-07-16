@@ -6,10 +6,11 @@ export default function CadastroOrganizador() {
     const navigate = useNavigate();
     const [form, setForm] = useState({
         nome: "",
-        cpfCnpj: "",
+        documento: "",
         telefone: "",
         email: "",
-        senha: ""
+        senha: "",
+        username: ""
     });
 
     const handleChange = (e) => {
@@ -22,7 +23,8 @@ export default function CadastroOrganizador() {
 
         const dadosParaEnviar = {
             nome: form.nome,
-            documento: form.cpfCnpj,
+            username: form.username,
+            documento: form.documento,
             telefone: form.telefone,
             email: form.email,
             senha: form.senha
@@ -62,12 +64,23 @@ export default function CadastroOrganizador() {
                             />
                         </div>
                         <div className="mb-3">
+                            <label className="form-label">Username*</label>
+                            <input
+                                type="text"
+                                name="username"
+                                className="form-control"
+                                value={form.username}
+                                onChange={handleChange}
+                                required
+                                />
+                            </div>
+                        <div className="mb-3">
                             <label className="form-label">CNPJ/CPF*</label>
                             <input
                                 type="text"
-                                name="cpfCnpj"
+                                name="documento"
                                 className="form-control"
-                                value={form.cpfCnpj}
+                                value={form.documento}
                                 onChange={handleChange}
                                 required
                             />

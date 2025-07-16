@@ -5,7 +5,7 @@ import "./CadastroUsuario.css";
 export default function CadastroUsuario() {
     const navigate = useNavigate();
     const [form, setForm] = useState({
-        nome: "",
+        nome_completo: "",
         telefone: "",
         email: "",
         senha: ""
@@ -42,9 +42,9 @@ export default function CadastroUsuario() {
                             <label className="form-label">Nome completo*</label>
                             <input
                                 type="text"
-                                name="nome"
+                                name="nome_completo"
                                 className="form-control"
-                                value={form.nome}
+                                value={form.nome_completo}
                                 onChange={handleChange}
                                 required
                             />
