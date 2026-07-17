@@ -3,6 +3,11 @@ USE sistema_eventos;
 
 DROP DATABASE sistema_eventos;
 
+SELECT * FROM evento;
+SELECT * FROM usuario;
+SELECT * FROM organizador;
+SELECT * FROM avaliacao;
+
 CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome_completo VARCHAR(100) NOT NULL,
@@ -28,10 +33,9 @@ CREATE TABLE evento (
     nivel_preco TINYINT NOT NULL, -- Níveis: 1, 2, 3...
     publicidade BOOLEAN NOT NULL DEFAULT 0,
     link_redirecionamento VARCHAR(255) NULL,
-    detalhes TEXT,
-    organizador_id INT NOT NULL,
-    FOREIGN KEY (organizador_id) REFERENCES organizador(id) ON DELETE CASCADE
+    detalhes TEXT
 );
+DROP TABLE evento CASCADE;
 
 CREATE TABLE avaliacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
