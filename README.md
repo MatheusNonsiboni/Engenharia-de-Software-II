@@ -8,11 +8,9 @@ Plataforma web para divulgação e gestão de eventos locais (shows, festas, bar
 ![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
 
----
-
 ## Sobre o projeto
 
-O Site de Evento é uma aplicação full stack desenvolvida para a disciplina de Engenharia de Software II, na Universidade Estadual de Londrina (UEL). O sistema resolve o problema de centralizar a divulgação de eventos locais em um único lugar, permitindo que organizadores publiquem e gerenciem seus eventos, e que usuários busquem, consultem detalhes e avaliem os eventos de que participaram.
+O Site de Eventos é uma aplicação full stack desenvolvida para a disciplina de Engenharia de Software II, na Universidade Estadual de Londrina (UEL). O sistema resolve o problema de centralizar a divulgação de eventos locais em um único lugar, permitindo que organizadores publiquem e gerenciem seus eventos, e que usuários busquem, consultem detalhes e avaliem os eventos de que participaram.
 
 O projeto foi construído em duas partes independentes que se comunicam via API REST: um back-end em **Spring Boot** responsável pelas regras de negócio e persistência dos dados, e um front-end em **React** responsável pela interface com a qual organizadores e usuários interagem.
 
@@ -138,8 +136,6 @@ npm start
 ```
 
 A aplicação abre automaticamente em `http://localhost:3000`, já conectada à API rodando na porta 8080.
-
----
 
 ## Autores
 
